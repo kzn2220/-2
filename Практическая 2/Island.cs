@@ -23,7 +23,7 @@ namespace Практическая_2
 
         public string GetInfo()
         {
-            return $"{Name} в {SeaName}: площадь {Square} км², население {Population} чел.";
+            return $"{Name} в {SeaName}: площадь {Square} кв. км, население {Population} чел.";
         }
     }
 }
