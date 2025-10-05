@@ -8,42 +8,35 @@ namespace Практическая_2
 {
     internal class OceanManager
     {
-        public List<Sea> Seas {  get; set; } = new List<Sea>();
-        public List<SeaAnimal> Animals { get; set; } = new List<SeaAnimal>();
-        public List<Island> Islands { get; set; } = new List<Island>();
+        public List<Sea> Seas {  get; set; }
+        public List<SeaAnimal> Animals { get; set; }
+        public List<Island> Islands { get; set; }
+
+        public OceanManager(List<Sea> seas, List<SeaAnimal> animals, List<Island> islands)
+        {
+            Seas = seas;
+            Animals = animals;
+            Islands = islands;
+        }
 
         public Sea FindDeepestSea()
         {
-            if (Seas.Count == 0) return null;
-            return Seas.OrderByDescending(s => s.Depth).First();
+            return Seas.OrderByDescending(s => s.Depth).FirstOrDefault();
         }
 
         public Sea FindSaltiestSea()
         {
-            if (Seas.Count == 0) return null;
-            return Seas.OrderByDescending(s => s.Salinity).First();
+            return Seas.OrderByDescending(s => s.Salinity).FirstOrDefault();
         }
 
         public SeaAnimal FindMostPopulousAnimal()
         {
-            if (Animals.Count == 0) return null;
-            return Animals.OrderByDescending(a => a.Population).First();
-        }
-
-        public List<SeaAnimal> FindAnimalsInSea(string seaName)
-        {
-            return Animals.Where(a => a.SeaName == seaName).ToList();
+            return Animals.OrderByDescending(a => a.Population).FirstOrDefault();
         }
 
         public Island FindLargestIsland()
         {
-            if (Islands.Count == 0) return null;
-            return Islands.OrderByDescending(i => i.Square).First();
-        }
-
-        public List<Island> FindIslandsInSea(string seaName)
-        {
-            return Islands.Where(i => i.SeaName == seaName).ToList();
+            return Islands.OrderByDescending(i => i.Square).FirstOrDefault();
         }
     }
 }
