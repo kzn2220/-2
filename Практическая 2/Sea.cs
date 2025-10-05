@@ -18,5 +18,10 @@ namespace Практическая_2
             Depth = depth;
             Salinity = salinity;
         }
+
+        public string GetInfo()
+        {
+            return $"{Name}: глубина {Depth} м, солёность {Salinity}%";
+        }
     }
 }
