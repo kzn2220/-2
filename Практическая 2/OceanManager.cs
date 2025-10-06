@@ -40,7 +40,6 @@ namespace Практическая_2
         {
             return Islands.OrderByDescending(i => i.Square).FirstOrDefault();
         }
-
         public Ship FindOldestShip()
         {
             return Ships.OrderBy(s => s.YearBuilt).FirstOrDefault();

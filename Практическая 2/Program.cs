@@ -56,8 +56,9 @@ static OceanManager InputDataManually()
     List<Sea> seas = InputSeas();
     List<SeaAnimal> animals = InputAnimals();
     List<Island> islands = InputIslands();
+    List<Ship> ships = InputShips();
 
-    return new OceanManager(seas, animals, islands);
+    return new OceanManager(seas, animals, islands, ships);
 }
 
 static List<Sea> InputSeas()
@@ -108,13 +109,30 @@ static List<Island> InputIslands()
     return islands;
 }
 
+static List<Ship> InputShips()
+{
+    Console.WriteLine("\n--- Ввод данных о кораблях ---");
+    Console.WriteLine("Введите 3 корабля");
+
+    var ships = new List<Ship>();
+    for (int i = 0; i < 3; i++)
+    {
+        Console.Write($"Корабль: {i + 1}: ");
+        string input = Console.ReadLine();
+        Ship ship = ConvertShip(input);
+        ships.Add(ship);
+    }
+    return ships;
+}
+
 static Sea ConvertSea(string input)
 {
     var parts = ParseInputWithQuotes(input);
     string name = parts[0];
     double depth = double.Parse(parts[1]);
     double salinity = double.Parse(parts[2]);
-    return new Sea(name, depth, salinity);
+    string description = parts[3];
+    return new Sea(name, depth, salinity, description);
 }
 
 static SeaAnimal ConvertAnimal(string input)
@@ -124,7 +142,8 @@ static SeaAnimal ConvertAnimal(string input)
     string seaName = parts[1];
     string type = parts[2];
     int population = int.Parse(parts[3]);
-    return new SeaAnimal(name, seaName, type, population);
+    string description = parts[4];
+    return new SeaAnimal(name, seaName, type, population, description);
 }
 
 static Island ConvertIsland(string input)
@@ -134,7 +153,18 @@ static Island ConvertIsland(string input)
     string seaName = parts[1];
     double area = double.Parse(parts[2]);
     int population = int.Parse(parts[3]);
-    return new Island(name, seaName, area, population);
+    string description = parts[4];
+    return new Island(name, seaName, area, population, description);
+}
+
+static Ship ConvertShip(string input)
+{
+    var parts = ParseInputWithQuotes(input);
+    string name = parts[0];
+    string seaName = parts[1];
+    string type = parts[2];
+    int yearBuilt = int.Parse(parts[3]);
+    return new Ship(name, seaName, type, yearBuilt);
 }
 
 static List<string> ParseInputWithQuotes(string input)
@@ -193,6 +223,12 @@ static void DisplayAllData(OceanManager manager)
     foreach (var island in manager.Islands)
     {
         Console.WriteLine(island.GetInfo());
+    }
+
+    Console.WriteLine("\n--- Корабли ---");
+    foreach (var ship in manager.Ships)
+    {
+        Console.WriteLine(ship.GetInfo());
     }
 }
 
