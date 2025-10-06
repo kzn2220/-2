@@ -11,17 +11,19 @@ namespace Практическая_2
         public string Name { get; set; }
         public double Depth { get; set; }
         public double Salinity { get; set; }
+        public string Description { get; set; }
 
-        public Sea(string name, double depth, double salinity)
+        public Sea(string name, double depth, double salinity, string country, string description)
         {
             Name = name;
             Depth = depth;
             Salinity = salinity;
+            Description = description;
         }
 
         public string GetInfo()
         {
-            return $"{Name}: глубина {Depth} м, солёность {Salinity}%";
+            return $"{Name}: глубина {Depth} м, солёность {Salinity}%. \nОписание: {Description}";
         }
     }
 }

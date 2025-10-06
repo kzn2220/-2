@@ -38,5 +38,5 @@ namespace Практическая_2
         {
             return Islands.OrderByDescending(i => i.Square).FirstOrDefault();
         }
-    }
+git    }
 }
