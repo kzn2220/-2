@@ -240,6 +240,7 @@ static void DisplayStatistics(OceanManager manager)
     Sea saltiestSea = manager.FindSaltiestSea();
     SeaAnimal populousAnimal = manager.FindMostPopulousAnimal();
     Island largestIsland = manager.FindLargestIsland();
+    Ship oldestShip = manager.FindOldestShip();
 
     if (deepestSea != null)
         Console.WriteLine($"Самое глубокое море: {deepestSea.Name} ({deepestSea.Depth} м)");
@@ -252,4 +253,6 @@ static void DisplayStatistics(OceanManager manager)
 
     if (largestIsland != null)
         Console.WriteLine($"Самый большой остров: {largestIsland.Name} ({largestIsland.Square} кв. км)");
+    if (oldestShip != null)
+        Console.WriteLine($"Самый старый корабль: {oldestShip.Name} ({oldestShip.YearBuilt} год)");
 }

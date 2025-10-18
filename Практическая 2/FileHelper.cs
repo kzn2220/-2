@@ -131,7 +131,7 @@ namespace Практическая_2
         {
             try
             {
-                string data = line.Substring(7).Trim();
+                string data = line.Substring(5).Trim();
                 var parts = ParseInputWithQuotes(data);
 
                 string name = parts[0];
