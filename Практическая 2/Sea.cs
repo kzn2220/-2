@@ -15,10 +15,12 @@ namespace Практическая_2
 
         public Sea(string name, double depth, double salinity, string description)
         {
+            Validators.ValidateSea(name, depth, salinity);
+
             Name = name;
             Depth = depth;
             Salinity = salinity;
-            Description = description;
+            Description = description ?? string.Empty;
         }
 
         public string GetInfo()

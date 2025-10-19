@@ -15,6 +15,8 @@ namespace Практическая_2
 
         public Ship(string name, string seaName, string type, int yearBuilt)
         {
+            Validators.ValidateShip(name, seaName, type, yearBuilt);
+
             Name = name;
             SeaName = seaName;
             Type = type;

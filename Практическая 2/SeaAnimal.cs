@@ -16,11 +16,13 @@ namespace Практическая_2
 
         public SeaAnimal(string name, string seaName, string type, int population, string description)
         {
+            Validators.ValidateAnimal(name, seaName, type, population);
+
             Name = name;
             SeaName = seaName;
             Type = type;
             Population = population;
-            Description = description;
+            Description = description ?? string.Empty;
         }
 
         public string GetInfo()

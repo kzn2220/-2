@@ -16,11 +16,13 @@ namespace Практическая_2
 
         public Island(string name, string seaName, double square, int population, string description)
         {
+            Validators.ValidateIsland(name, seaName, square, population);
+
             Name = name;
             SeaName = seaName;
             Square = square;
             Population = population;
-            Description = description;
+            Description = description ?? string.Empty;
         }
 
         public string GetInfo()

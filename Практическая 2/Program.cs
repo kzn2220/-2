@@ -64,7 +64,7 @@ static OceanManager InputDataManually()
 static List<Sea> InputSeas()
 {
     Console.WriteLine("\n--- Ввод данных о морях ---");
-    Console.WriteLine("Введите 3 моря в формате: \"название\" глубина солёность");
+    Console.WriteLine("Введите 3 моря в формате: \"название\" глубина солёность \"описание\"");
 
     var seas = new List<Sea>();
     for (int i = 0; i < 3; i++)
@@ -80,7 +80,7 @@ static List<Sea> InputSeas()
 static List<SeaAnimal> InputAnimals()
 {
     Console.WriteLine("\n--- Ввод данных о животных ---");
-    Console.WriteLine("Введите 2 животных в формате: \"название\" \"море\" \"тип\" популяция");
+    Console.WriteLine("Введите 2 животных в формате: \"название\" \"море\" \"тип\" популяция \"описание\"");
 
     var animals = new List<SeaAnimal>();
     for (int i = 0; i < 2; i++)
@@ -96,7 +96,7 @@ static List<SeaAnimal> InputAnimals()
 static List<Island> InputIslands()
 {
     Console.WriteLine("\n--- Ввод данных об островах ---");
-    Console.WriteLine("Введите 2 острова в формате: \"название\" \"море\" площадь население");
+    Console.WriteLine("Введите 2 острова в формате: \"название\" \"море\" площадь население \"описание\"");
 
     var islands = new List<Island>();
     for (int i = 0; i < 2; i++)
@@ -127,80 +127,54 @@ static List<Ship> InputShips()
 
 static Sea ConvertSea(string input)
 {
-    var parts = ParseInputWithQuotes(input);
-    string name = parts[0];
-    double depth = double.Parse(parts[1]);
-    double salinity = double.Parse(parts[2]);
-    string description = parts[3];
-    return new Sea(name, depth, salinity, description);
+    try
+    {
+        return InputProcessor.ConvertSea(input);
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Ошибка: {ex.Message}");
+        throw;
+    }
 }
 
 static SeaAnimal ConvertAnimal(string input)
 {
-    var parts = ParseInputWithQuotes(input);
-    string name = parts[0];
-    string seaName = parts[1];
-    string type = parts[2];
-    int population = int.Parse(parts[3]);
-    string description = parts[4];
-    return new SeaAnimal(name, seaName, type, population, description);
+    try
+    {
+        return InputProcessor.ConvertAnimal(input);
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Ошибка: {ex.Message}");
+        throw;
+    }
 }
 
 static Island ConvertIsland(string input)
 {
-    var parts = ParseInputWithQuotes(input);
-    string name = parts[0];
-    string seaName = parts[1];
-    double area = double.Parse(parts[2]);
-    int population = int.Parse(parts[3]);
-    string description = parts[4];
-    return new Island(name, seaName, area, population, description);
+    try
+    {
+        return InputProcessor.ConvertIsland(input);
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Ошибка: {ex.Message}");
+        throw;
+    }
 }
 
 static Ship ConvertShip(string input)
 {
-    var parts = ParseInputWithQuotes(input);
-    string name = parts[0];
-    string seaName = parts[1];
-    string type = parts[2];
-    int yearBuilt = int.Parse(parts[3]);
-    return new Ship(name, seaName, type, yearBuilt);
-}
-
-static List<string> ParseInputWithQuotes(string input)
-{
-    var parts = new List<string>();
-    bool inQuotes = false;
-    string currentPart = "";
-
-    foreach (char c in input.Trim())
+    try
     {
-        if (c == '"')
-        {
-            inQuotes = !inQuotes;
-            continue;
-        }
-
-        if (c == ' ' && !inQuotes)
-        {
-            if (!string.IsNullOrEmpty(currentPart))
-            {
-                parts.Add(currentPart);
-                currentPart = "";
-            }
-        }
-        else
-        {
-            currentPart += c;
-        }
+        return InputProcessor.ConvertShip(input);
     }
-
-    if (!string.IsNullOrEmpty(currentPart))
+    catch (Exception ex)
     {
-        parts.Add(currentPart);
+        Console.WriteLine($"Ошибка: {ex.Message}");
+        throw;
     }
-
-    return parts;
 }
 
 static void DisplayAllData(OceanManager manager)

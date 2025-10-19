@@ -67,18 +67,11 @@ namespace Практическая_2
             try
             {
                 string data = line.Substring(4).Trim();
-                var parts = ParseInputWithQuotes(data);
-
-                string name = parts[0];
-                double depth = double.Parse(parts[1]);
-                double salinity = double.Parse(parts[2]);
-                string description = parts[3];
-
-                return new Sea(name, depth, salinity, description);
+                return InputProcessor.ConvertSea(data);
             }
-            catch
+            catch (Exception ex)
             {
-                Console.WriteLine($"Ошибка парсинга моря, возможно в дроби введена точка вместо запятой: {line}");
+                Console.WriteLine($"Ошибка создания моря: {ex.Message}");
                 return null;
             }
         }
@@ -88,19 +81,11 @@ namespace Практическая_2
             try
             {
                 string data = line.Substring(7).Trim();
-                var parts = ParseInputWithQuotes(data);
-
-                string name = parts[0];
-                string seaName = parts[1];
-                string type = parts[2];
-                int population = int.Parse(parts[3]);
-                string description = parts[4];
-
-                return new SeaAnimal(name, seaName, type, population, description);
+                return InputProcessor.ConvertAnimal(data);
             }
-            catch
+            catch (Exception ex)
             {
-                Console.WriteLine($"Ошибка парсинга животного: {line}");
+                Console.WriteLine($"Ошибка создания животного: {ex.Message}");
                 return null;
             }
         }
@@ -110,19 +95,11 @@ namespace Практическая_2
             try
             {
                 string data = line.Substring(7).Trim();
-                var parts = ParseInputWithQuotes(data);
-
-                string name = parts[0];
-                string seaName = parts[1];
-                double area = double.Parse(parts[2]);
-                int population = int.Parse(parts[3]);
-                string description = parts[4];
-
-                return new Island(name, seaName, area, population, description);
+                return InputProcessor.ConvertIsland(data);
             }
-            catch
+            catch (Exception ex)
             {
-                Console.WriteLine($"Ошибка парсинга острова: {line}");
+                Console.WriteLine($"Ошибка создания острова: {ex.Message}");
                 return null;
             }
         }
@@ -132,23 +109,16 @@ namespace Практическая_2
             try
             {
                 string data = line.Substring(5).Trim();
-                var parts = ParseInputWithQuotes(data);
-
-                string name = parts[0];
-                string seaName = parts[1];
-                string type = parts[2];
-                int yearBuilt = int.Parse(parts[3]);
-
-                return new Ship(name, seaName, type, yearBuilt);
+                return InputProcessor.ConvertShip(data);
             }
-            catch
+            catch (Exception ex)
             {
-                Console.WriteLine($"Ошибка парсинга корабля: {line}");
+                Console.WriteLine($"Ошибка создания корабля: {ex.Message}");
                 return null;
             }
         }
 
-        private static List<string> ParseInputWithQuotes(string input)
+        /*private static List<string> ParseInputWithQuotes(string input)
         {
             var parts = new List<string>();
             bool inQuotes = false;
@@ -182,6 +152,6 @@ namespace Практическая_2
             }
 
             return parts;
-        }
+        }*/
     }
 }
