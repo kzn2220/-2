@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Практическая_2
 {
-    internal class Sea
+    public class Sea
     {
         public string Name { get; set; }
         public double Depth { get; set; }

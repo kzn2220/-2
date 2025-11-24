@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Практическая_2
 {
-    internal class FileHelper
+    public class FileHelper
     {
         public static OceanManager LoadFromFile(string filePath = "data.txt")
         {
@@ -117,41 +117,5 @@ namespace Практическая_2
                 return null;
             }
         }
-
-        /*private static List<string> ParseInputWithQuotes(string input)
-        {
-            var parts = new List<string>();
-            bool inQuotes = false;
-            string currentPart = "";
-
-            foreach (char c in input.Trim())
-            {
-                if (c == '"')
-                {
-                    inQuotes = !inQuotes;
-                    continue;
-                }
-
-                if (c == ' ' && !inQuotes)
-                {
-                    if (!string.IsNullOrEmpty(currentPart))
-                    {
-                        parts.Add(currentPart);
-                        currentPart = "";
-                    }
-                }
-                else
-                {
-                    currentPart += c;
-                }
-            }
-
-            if (!string.IsNullOrEmpty(currentPart))
-            {
-                parts.Add(currentPart);
-            }
-
-            return parts;
-        }*/
     }
 }

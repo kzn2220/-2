@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Практическая_2
 {
-    internal class SeaAnimal
+    public class SeaAnimal
     {
         public string Name { get; set; }
         public string SeaName { get; set; }

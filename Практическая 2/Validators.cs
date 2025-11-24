@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Практическая_2
 {
-    internal class Validators
+    public static class Validators
     {
         public static void ValidateSea(string name, double depth, double salinity)
         {

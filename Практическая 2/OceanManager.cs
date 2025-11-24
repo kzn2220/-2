@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Практическая_2
 {
-    internal class OceanManager
+    public class OceanManager
     {
         public List<Sea> Seas {  get; set; }
         public List<SeaAnimal> Animals { get; set; }

@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace Практическая_2
 {
-    internal class Ship
+    public class Ship
     {
         public string Name { get; set; }
         public string SeaName { get; set; }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Практическая_2
 {
-    internal class InputProcessor
+    public static class InputProcessor
     {
         public static Sea ConvertSea(string input)
         {
