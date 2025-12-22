@@ -10,10 +10,7 @@ namespace Практическая_2
     {
         public static OceanManager LoadFromFile(string filePath = "data.txt")
         {
-            var seas = new List<Sea>();
-            var animals = new List<SeaAnimal>();
-            var islands = new List<Island>();
-            var ships = new List<Ship>();
+            var manager = new OceanManager();
 
             try
             {
@@ -29,22 +26,22 @@ namespace Практическая_2
                         if (line.StartsWith("SEA:"))
                         {
                             Sea sea = CreateSeaFromString(line);
-                            if (sea != null) seas.Add(sea);
+                            if (sea != null) manager.AddEntity(sea);
                         }
                         else if (line.StartsWith("ANIMAL:"))
                         {
                             SeaAnimal animal = CreateAnimalFromString(line);
-                            if (animal != null) animals.Add(animal);
+                            if (animal != null) manager.AddEntity(animal);
                         }
                         else if (line.StartsWith("ISLAND:"))
                         {
                             Island island = CreateIslandFromString(line);
-                            if (island != null) islands.Add(island);
+                            if (island != null) manager.AddEntity(island);
                         }
                         else if (line.StartsWith("SHIP:"))
                         {
                             Ship ship = CreateShipFromString(line);
-                            if (ship != null) ships.Add(ship);
+                            if (ship != null) manager.AddEntity(ship);
                         }
                     }
                     catch (Exception ex)
@@ -59,7 +56,7 @@ namespace Практическая_2
                 Console.WriteLine($"Ошибка чтения файла: {ex.Message}");
             }
 
-            return new OceanManager(seas, animals, islands, ships);
+            return manager;
         }
 
         private static Sea CreateSeaFromString(string line)

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Практическая_2
 {
-    public class Ship
+    public class Ship : IOceanEntity
     {
         public string Name { get; set; }
         public string SeaName { get; set; }

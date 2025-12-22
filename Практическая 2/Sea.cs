@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 
 namespace Практическая_2
 {
-    public class Sea
+    public class Sea : IOceanEntity
     {
         public string Name { get; set; }
         public double Depth { get; set; }
         public double Salinity { get; set; }
         public string Description { get; set; }
+        public string SeaName => Name;
 
         public Sea(string name, double depth, double salinity, string description)
         {

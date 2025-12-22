@@ -53,76 +53,49 @@ static OceanManager InputDataManually()
 {
     Console.WriteLine("\n==== РУЧНОЙ ВВОД ====");
 
-    List<Sea> seas = InputSeas();
-    List<SeaAnimal> animals = InputAnimals();
-    List<Island> islands = InputIslands();
-    List<Ship> ships = InputShips();
+    var manager = new OceanManager();
 
-    return new OceanManager(seas, animals, islands, ships);
-}
-
-static List<Sea> InputSeas()
-{
     Console.WriteLine("\n--- Ввод данных о морях ---");
     Console.WriteLine("Введите 3 моря в формате: \"название\" глубина солёность \"описание\"");
-
-    var seas = new List<Sea>();
     for (int i = 0; i < 3; i++)
     {
         Console.Write($"Море {i + 1}: ");
         string input = Console.ReadLine();
         Sea sea = ConvertSea(input);
-        seas.Add(sea);
+        manager.AddEntity(sea);
     }
-    return seas;
-}
 
-static List<SeaAnimal> InputAnimals()
-{
     Console.WriteLine("\n--- Ввод данных о животных ---");
     Console.WriteLine("Введите 2 животных в формате: \"название\" \"море\" \"тип\" популяция \"описание\"");
-
-    var animals = new List<SeaAnimal>();
     for (int i = 0; i < 2; i++)
     {
         Console.Write($"Животное {i + 1}: ");
         string input = Console.ReadLine();
         SeaAnimal animal = ConvertAnimal(input);
-        animals.Add(animal);
+        manager.AddEntity(animal);
     }
-    return animals;
-}
 
-static List<Island> InputIslands()
-{
     Console.WriteLine("\n--- Ввод данных об островах ---");
     Console.WriteLine("Введите 2 острова в формате: \"название\" \"море\" площадь население \"описание\"");
-
-    var islands = new List<Island>();
     for (int i = 0; i < 2; i++)
     {
         Console.Write($"Остров {i + 1}: ");
         string input = Console.ReadLine();
         Island island = ConvertIsland(input);
-        islands.Add(island);
+        manager.AddEntity(island);
     }
-    return islands;
-}
 
-static List<Ship> InputShips()
-{
     Console.WriteLine("\n--- Ввод данных о кораблях ---");
-    Console.WriteLine("Введите 3 корабля");
-
-    var ships = new List<Ship>();
+    Console.WriteLine("Введите 3 корабля в формате: \"название\" \"море\" \"тип\" год_постройки");
     for (int i = 0; i < 3; i++)
     {
-        Console.Write($"Корабль: {i + 1}: ");
+        Console.Write($"Корабль {i + 1}: ");
         string input = Console.ReadLine();
         Ship ship = ConvertShip(input);
-        ships.Add(ship);
+        manager.AddEntity(ship);
     }
-    return ships;
+
+    return manager;
 }
 
 static Sea ConvertSea(string input)

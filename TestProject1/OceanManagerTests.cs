@@ -9,13 +9,10 @@ namespace TestProject1
         public void FindDeepestSea_WithSeas_ReturnsDeepest()
         {
             //Arrange
-            var seas = new List<Sea>
-        {
-            new Sea("Море1", 1000, 35, "Описание1"),
-            new Sea("Море2", 2000, 40, "Описание2"),
-            new Sea("Море3", 1500, 38, "Описание3")
-        };
-            var manager = new OceanManager(seas, new List<SeaAnimal>(), new List<Island>(), new List<Ship>());
+            var manager = new OceanManager();
+            manager.AddEntity(new Sea("Море1", 1000, 35, "Описание1"));
+            manager.AddEntity(new Sea("Море2", 2000, 40, "Описание2"));
+            manager.AddEntity(new Sea("Море3", 1500, 38, "Описание3"));
 
             //Act
             var result = manager.FindDeepestSea();
@@ -30,7 +27,7 @@ namespace TestProject1
         public void FindDeepestSea_EmptyList_ReturnsNull()
         {
             //Arrange
-            var manager = new OceanManager(new List<Sea>(), new List<SeaAnimal>(), new List<Island>(), new List<Ship>());
+            var manager = new OceanManager();
 
             //Act
             var result = manager.FindDeepestSea();
@@ -43,13 +40,10 @@ namespace TestProject1
         public void FindOldestShip_WithShips_ReturnsOldest()
         {
             //Arrange
-            var ships = new List<Ship>
-        {
-            new Ship("Корабль1", "Море1", "Грузовой", 1990),
-            new Ship("Корабль2", "Море2", "Пассажирский", 1980),
-            new Ship("Корабль3", "Море3", "Военный", 2000)
-        };
-            var manager = new OceanManager(new List<Sea>(), new List<SeaAnimal>(), new List<Island>(), ships);
+            var manager = new OceanManager();
+            manager.AddEntity(new Ship("Корабль1", "Море1", "Грузовой", 1990));
+            manager.AddEntity(new Ship("Корабль2", "Море2", "Пассажирский", 1980));
+            manager.AddEntity(new Ship("Корабль3", "Море3", "Военный", 2000));
 
             //Act
             var result = manager.FindOldestShip();
@@ -63,12 +57,9 @@ namespace TestProject1
         [TestMethod]
         public void FindDeepestSea_SameDepth_ReturnsFirst()
         {
-            var seas = new List<Sea>
-        {
-            new Sea("Море1", 1000, 35, ""),
-            new Sea("Море2", 1000, 40, "")
-        };
-            var manager = new OceanManager(seas, null, null, null);
+            var manager = new OceanManager();
+            manager.AddEntity(new Sea("Море1", 1000, 35, ""));
+            manager.AddEntity(new Sea("Море2", 1000, 40, ""));
 
             var result = manager.FindDeepestSea();
             Assert.IsNotNull(result);
@@ -77,12 +68,9 @@ namespace TestProject1
         [TestMethod]
         public void FindOldestShip_SameYear_ReturnsFirst()
         {
-            var ships = new List<Ship>
-        {
-            new Ship("Корабль1", "Море", "Тип", 2000),
-            new Ship("Корабль2", "Море", "Тип", 2000)
-        };
-            var manager = new OceanManager(null, null, null, ships);
+            var manager = new OceanManager();
+            manager.AddEntity(new Ship("Корабль1", "Море", "Тип", 2000));
+            manager.AddEntity(new Ship("Корабль2", "Море", "Тип", 2000));
 
             var result = manager.FindOldestShip();
             Assert.IsNotNull(result);

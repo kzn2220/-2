@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Практическая_2
 {
-    public class Island
+    public class Island : IOceanEntity
     {
         public string Name { get; set; }
         public string SeaName { get; set; }

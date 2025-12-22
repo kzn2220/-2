@@ -8,55 +8,50 @@ namespace Практическая_2
 {
     public class OceanManager
     {
-        public List<Sea> Seas {  get; set; }
-        public List<SeaAnimal> Animals { get; set; }
-        public List<Island> Islands { get; set; }
-        public List<Ship> Ships { get; set; }
+        private readonly List<IOceanEntity> _entities;
 
-        public OceanManager(List<Sea> seas, List<SeaAnimal> animals, List<Island> islands, List<Ship> ships)
+        public OceanManager()
         {
-            Seas = seas ?? new List<Sea>();
-            Animals = animals ?? new List<SeaAnimal>();
-            Islands = islands ?? new List<Island>();
-            Ships = ships ?? new List<Ship>();
+            _entities = new List<IOceanEntity>();
         }
+
+        public OceanManager(IEnumerable<IOceanEntity> entities)
+        {
+            _entities = entities?.ToList() ?? throw new ArgumentNullException(nameof(entities));
+        }
+
+        public void AddEntity(IOceanEntity entity)
+        {
+            _entities.Add(entity ?? throw new ArgumentNullException(nameof(entity)));
+        }
+
+        public IEnumerable<Sea> Seas => _entities.OfType<Sea>();
+        public IEnumerable<SeaAnimal> Animals => _entities.OfType<SeaAnimal>();
+        public IEnumerable<Island> Islands => _entities.OfType<Island>();
+        public IEnumerable<Ship> Ships => _entities.OfType<Ship>();
 
         public Sea FindDeepestSea()
         {
-            if (Seas == null || Seas.Count == 0)
-                return null;
-
             return Seas.OrderByDescending(s => s.Depth).FirstOrDefault();
         }
 
         public Sea FindSaltiestSea()
         {
-            if (Seas == null || Seas.Count == 0)
-                return null;
-
             return Seas.OrderByDescending(s => s.Salinity).FirstOrDefault();
         }
 
         public SeaAnimal FindMostPopulousAnimal()
         {
-            if (Animals == null || Animals.Count == 0)
-                return null;
-
             return Animals.OrderByDescending(a => a.Population).FirstOrDefault();
         }
 
         public Island FindLargestIsland()
         {
-            if (Islands == null || Islands.Count == 0)
-                return null;
 
             return Islands.OrderByDescending(i => i.Square).FirstOrDefault();
         }
         public Ship FindOldestShip()
         {
-            if (Ships == null || Ships.Count == 0)
-                return null;
-
             return Ships.OrderBy(s => s.YearBuilt).FirstOrDefault();
         }
     }
